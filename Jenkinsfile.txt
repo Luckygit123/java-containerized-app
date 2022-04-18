@@ -1,0 +1,31 @@
+pipeline {
+    agent any 
+    stages {
+        stage('clone') {
+            steps {
+                git(
+                    url:'https://github.com/Luckygit123/java-containerized-app.git',
+                    branch:'main'
+                    )
+            }
+           
+        }
+        
+        stage('build') { 
+            steps {
+                sh "mvn install" 
+            }
+        }
+		stage('image build') { 
+            steps {
+                sh "docker images"
+                sh "docker build -t java-containerized-app ."
+                sh "docker login -u luckdockerdevops -p Lucky@123"
+                sh "docker tag java-containerized-app:latest luckdockerdevops/java-containerized-app:latest"
+                sh "docker push luckdockerdevops/java-containerized-app:latest"
+                sh "docker run -d --name cont2 java-containerized-app:latest"
+
+    		}
+    	}
+    }
+}

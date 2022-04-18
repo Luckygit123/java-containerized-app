@@ -1,13 +1,23 @@
 package com.devops.devOpsDemo;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.io.*;
+import java.lang.Thread;
 
-@SpringBootApplication
+
 public class DevOpsDemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DevOpsDemoApplication.class, args);
+
+		try {
+			while(true) {
+					Thread.sleep(100000);
+			}
+			}
+        catch (Exception e) {
+           
+            // catching the exception
+            System.out.println(e);
+        }
 	}
 
 }
