@@ -1,2 +1,7 @@
 FROM openjdk:8-jdk-alpine
-RUN  echo "i am good" >/tmp/testfile
+VOLUME /tmp
+ADD target/java-containerized-app-0.0.1-SNAPSHOT.jar app.jar
+
+ENTRYPOINT ["java","-jar","app.jar"]
+
+EXPOSE 2222
